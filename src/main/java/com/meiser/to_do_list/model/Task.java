@@ -33,6 +33,9 @@ public class Task {
     @Column(updatable = false) // Não deixa atualizar este campo
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
+    private String description;
+
     // Metodo a ser executado ANTES de salvar no banco pela primeira vez
     // Define a data e hora atual para o campo createdAt
     @PrePersist
