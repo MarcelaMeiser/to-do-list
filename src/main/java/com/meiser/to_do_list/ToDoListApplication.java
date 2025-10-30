@@ -121,6 +121,6 @@ public class ToDoListApplication implements CommandLineRunner {
         System.out.println("4. Marcar Tarefa como completa");
         System.out.println("5. Deletar Tarefa por ID");
         System.out.println("6. Sair do Menu");
-        System.out.print("Escolha uma opção: ");
+        System.out.print("Escolha uma opcao: ");
     }
 }
