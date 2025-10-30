@@ -3,7 +3,10 @@ package com.meiser.to_do_list.service;
 import com.meiser.to_do_list.model.Task;
 import com.meiser.to_do_list.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
 // LÓGICAS DE NEGÓCIO:
@@ -44,6 +47,22 @@ public class TaskService {
     // Retorno: Retorna uma lista de todas as tarefas encontradas.
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
+    }
+
+    /**
+     * Busca uma tarefa pelo seu ID.
+     * @param id O ID da tarefa a ser buscada.
+     * @return A tarefa encontrada.
+     * @throws ResponseStatusException se a tarefa não for encontrada (erro 404).
+     */
+    // O findById do JpaRepository não retorna Task diretamente. Ele retorna um Optional
+    // que é uma forma moderna no Java de lidar com valores que podem estar ausentes (NullPointerException).
+    // .orElseThrow() é um metodo do Optional que permite especificar uma ação a ser tomada
+    // RespondeStatusException é uma exceção especial do Spring que, quando lançada,
+    // resulta numa resposta HTTP com o status especificado (neste caso, 404 Not Found).
+    public Task getTaskById(Long id) {
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarefa não encontrada com o ID: " + id));
     }
 
 }

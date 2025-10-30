@@ -40,4 +40,14 @@ public class TaskController {
         // retorna a lista de tarefas no corpo da resposta e o status HTTP 200 (OK), indicando sucesso
         return new ResponseEntity<>(tasks, HttpStatus.OK); // Retorna 200 OK
     }
+
+    // Endpoint 3:
+    // Mapeia para GET /api/v1/tasks/{id}
+    // PathVariable pega o valor da URL (o {id} e o injeta na variável Long id do metodo
+    @GetMapping("/{id}")
+    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
+        Task task = taskService.getTaskById(id);
+        return new ResponseEntity<>(task, HttpStatus.OK);
+    }
+    
 }
