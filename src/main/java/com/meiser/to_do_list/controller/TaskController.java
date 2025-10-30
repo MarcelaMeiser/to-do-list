@@ -65,5 +65,5 @@ public class TaskController {
         taskService.deleteTask(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Retorna 204 No Content
     }
-    
+
 }

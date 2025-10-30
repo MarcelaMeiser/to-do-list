@@ -5,15 +5,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
-// Anotação Lombok para gerar getters, setters, toString, etc.
-@Data
-
-// Marca a classe como uma entidade JPA, ou seja,
-// ela será mapeada para uma tabela no banco de dados
-@Entity
-
-// Define o nome da tabela no banco de dados
-@Table(name = "tasks")
+@Data // Anotação Lombok para gerar getters, setters, toString, etc.
+@Entity // Marca a classe como uma entidade JPA, ou seja,
+@Table(name = "tasks") // Define o nome da tabela no banco de dados
 
 public class Task {
     // Indica que este campo é a chave primária da entidade (Long id)
@@ -27,14 +21,6 @@ public class Task {
     // Um campo booleano que indica se a tarefa foi concluída ou não
     // Inicializa como false por padrão
     private boolean completed = false;
-
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
 
     // Define que este campo não pode ser atualizado após ser inserido no banco.
     // Isso é útil para garantir que a data de criação permaneça imutável
