@@ -65,10 +65,21 @@ public class TaskService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarefa não encontrada com o ID: " + id));
     }
 
+    // Marca uma tarefa como concluída
+    // Busca a tarefa pelo ID, atualiza o campo 'completed' para true
+    // e salva a tarefa atualizada no banco de dados.
     public Task markTaskAsCompleted(Long id) {
         Task taskToUpdate = getTaskById(id);
         taskToUpdate.setCompleted(true);
         return taskRepository.save(taskToUpdate);
+    }
+
+    // Deleta uma tarefa pelo ID
+    // Busca a tarefa pelo ID e a remove do banco de dados.
+    // Se a tarefa não for encontrada, lança uma exceção 404.
+    public void deleteTask(Long id) {
+        Task taskToDelete = getTaskById(id);
+        taskRepository.delete(taskToDelete);
     }
 
 }

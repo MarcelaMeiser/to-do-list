@@ -57,4 +57,13 @@ public class TaskController {
         Task updatedTask = taskService.markTaskAsCompleted(id);
         return new ResponseEntity<>(updatedTask, HttpStatus.OK);
     }
+
+    // Endpoint 5:
+    // Mapeia para DELETE /api/v1/tasks/{id}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+        taskService.deleteTask(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Retorna 204 No Content
+    }
+    
 }
