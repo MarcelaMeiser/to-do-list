@@ -65,4 +65,10 @@ public class TaskService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarefa não encontrada com o ID: " + id));
     }
 
+    public Task markTaskAsCompleted(Long id) {
+        Task taskToUpdate = getTaskById(id);
+        taskToUpdate.setCompleted(true);
+        return taskRepository.save(taskToUpdate);
+    }
+
 }

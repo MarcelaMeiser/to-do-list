@@ -28,6 +28,14 @@ public class Task {
     // Inicializa como false por padrão
     private boolean completed = false;
 
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
     // Define que este campo não pode ser atualizado após ser inserido no banco.
     // Isso é útil para garantir que a data de criação permaneça imutável
     @Column(updatable = false) // Não deixa atualizar este campo

@@ -49,5 +49,12 @@ public class TaskController {
         Task task = taskService.getTaskById(id);
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
-    
+
+    // Endpoint 4:
+    // Mapeia para PATCH /api/v1/tasks/{id}/complete
+    @PatchMapping("/{id}/complete")
+    public ResponseEntity<Task> markTaskAsCompleted(@PathVariable Long id) {
+        Task updatedTask = taskService.markTaskAsCompleted(id);
+        return new ResponseEntity<>(updatedTask, HttpStatus.OK);
+    }
 }
